@@ -1,7 +1,8 @@
 {
   "scripts": {
     "compile": "yarn hardhat compile",
-    "deploy": "yarn hardhat run scripts/deploy.ts",
+    "deploy": "yarn hardhat deploy",
+    "old deploy": "yarn hardhat run scripts/deploy.ts",
     "encrypt": "yarn hardhat run scripts/encryptKey.ts",
     "runnode": "yarn hardhat node",
     "clean": "yarn hardhat clean",
@@ -28,6 +29,7 @@
     "ethers": "^6.4.0",
     "hardhat": "^2.15.0",
     "hardhat-deploy": "^0.11.31",
+    "hardhat-deploy-ethers": "^0.3.0-beta.13",
     "hardhat-gas-reporter": "^1.0.9",
     "prettier": "^2.8.8",
     "prettier-plugin-solidity": "^1.1.3",

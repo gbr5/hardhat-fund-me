@@ -11,7 +11,9 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY! || "key"
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY! || "key"
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.7",
+  solidity: {
+    compilers: [{ version: "0.8.7" }, { version: "0.6.6" }],
+  },
   defaultNetwork: "hardhat",
   networks: {
     sepolia: {
@@ -25,8 +27,7 @@ const config: HardhatUserConfig = {
     },
   },
   etherscan: {
-    // Your API key for Etherscan
-    // Obtain one at https://etherscan.io/
+    // Your API key for Etherscan - Obtain one at https://etherscan.io/
     apiKey: ETHERSCAN_API_KEY,
   },
   gasReporter: {
@@ -36,6 +37,14 @@ const config: HardhatUserConfig = {
     currency: "USD",
     coinmarketcap: COINMARKETCAP_API_KEY,
     token: "MATIC",
+  },
+  namedAccounts: {
+    deployer: {
+      default: 0,
+    },
+    user: {
+      default: 1,
+    },
   },
 }
 
