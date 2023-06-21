@@ -1,7 +1,11 @@
 import { network } from "hardhat"
+import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { developmentChain, args } from "../helper-hardhat-config"
 
-module.exports = async ({ getNamedAccounts, deployments }: any) => {
+module.exports = async ({
+  getNamedAccounts,
+  deployments,
+}: HardhatRuntimeEnvironment) => {
   const { deploy, log } = deployments
   const { deployer } = await getNamedAccounts()
 

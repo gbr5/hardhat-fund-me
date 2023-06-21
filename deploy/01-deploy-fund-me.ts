@@ -1,30 +1,33 @@
-// import {  } from "hardhat-deploy-ethers/types"
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { network } from "hardhat"
 import { networkConfig, developmentChain } from "../helper-hardhat-config"
 import verify from "../utils/verify"
-import sleep from "../utils/sleep"
 
-module.exports = async ({ getNamedAccounts, deployments }: any) => {
+module.exports = async ({
+  getNamedAccounts,
+  deployments,
+}: HardhatRuntimeEnvironment) => {
   const { deploy, log, get } = deployments
   const { deployer } = await getNamedAccounts()
 
   const chainId = network.config.chainId!
 
   let ethUsdPriceFeedAddress: string
+  let blockConfirmation = 1
 
   if (developmentChain.includes(chainId)) {
     const ethUsdAggregator = await get("MockV3Aggregator")
     ethUsdPriceFeedAddress = ethUsdAggregator.address
   } else {
     ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+    blockConfirmation = networkConfig[chainId]["blockConfirmation"]
   }
   const args = [ethUsdPriceFeedAddress]
   const fundMe = await deploy("FundMe", {
     from: deployer,
     args,
     log: true,
-    waitConfirmations: 6,
+    waitConfirmations: blockConfirmation,
   })
 
   if (!developmentChain.includes(chainId) && process.env.ETHERSCAN_API_KEY!) {

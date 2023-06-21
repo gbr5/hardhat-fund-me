@@ -9,8 +9,10 @@
     "resolveJsonModule": true
   },
   "include":[
+    "./deploy",
     "./scripts",
-    "./test"
+    "./test",
+    "./utils"
   ],
   "files": [
     "./hardhat.config.ts"

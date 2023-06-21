@@ -1,7 +1,9 @@
 import { HardhatUserConfig } from "hardhat/config"
 import "@nomicfoundation/hardhat-toolbox"
 import "@nomicfoundation/hardhat-verify"
+import "hardhat-gas-reporter"
 import "hardhat-deploy"
+import "hardhat-deploy-ethers"
 import * as dotenv from "dotenv"
 
 dotenv.config()
